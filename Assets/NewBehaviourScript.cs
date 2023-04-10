@@ -8,23 +8,24 @@ abstract class Infliction
     private string _name;
     private string _description;
     private int _healthLoss;
-    private enum _symptoms;
+    //private enum _symptoms;
     private int _painLevel;
 
-    internal virtual kill();
-    internal virtual decreaseHealth();
-    internal virtual newSymptom();
+    //public virtual void kill();
+    //public virtual int decreaseHealth();
+    //public virtual void newSymptom();
 }
 
 abstract class Disease : Infliction
 {
-    override private int _severity;
-    override private string _name;
-    override private string _description;
-    override private int _healthLoss;
+    private int _severity;
+    private string _name;
+    private string _description;
+    private int _healthLoss;
     private int _progression;
 }
 
+/*/
 abstract class Infectious : Disease
 {
 
@@ -35,7 +36,7 @@ abstract class Injury : Infliction
 {
     
 }
-
+/*/
 
 public class Patient
 {
@@ -46,6 +47,9 @@ public class Patient
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public string _name;
+
+    /*/
     // Start is called before the first frame update
     void Start()
     {
@@ -57,4 +61,5 @@ public class NewBehaviourScript : MonoBehaviour
     {
         
     }
+    /*/
 }
