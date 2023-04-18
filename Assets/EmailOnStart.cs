@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MainClasses.ClassSystem;
 
-public class NewGame : MonoBehaviour
+public class EmailOnStart : MonoBehaviour
 {
+    [SerializeField]
+    GameObject emailPrefab;
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject TutorialEmail = Instantiate() as GameObject;
+        Patient patient = new Patient();
     }
 }
