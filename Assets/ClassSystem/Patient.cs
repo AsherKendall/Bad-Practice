@@ -17,11 +17,11 @@ namespace BadPractice.ClassSystem
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _name;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_name = value;
 			}
 		}
 

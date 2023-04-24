@@ -838,7 +838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc8d8ec24994d94fb76ed586426e0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emailPrefab: {fileID: 2929228204956261176, guid: bf2c01b2e588d7645964945fef6ca9d8, type: 3}
+  EmailPre: {fileID: 7715696567860646389, guid: b74350c54f65a484ba5f6adc1c3bf76a, type: 3}
+  Content: {fileID: 1044730177}
 --- !u!1 &793061840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,7 +1515,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1970303553}
   m_HandleRect: {fileID: 1970303552}
   m_Direction: 0
-  m_Value: 1.0000051
+  m_Value: 1.0000117
   m_Size: 0.9731324
   m_NumberOfSteps: 0
   m_OnValueChanged:

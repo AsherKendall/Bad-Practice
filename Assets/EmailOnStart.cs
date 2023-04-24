@@ -14,15 +14,14 @@ public class EmailOnStart : MonoBehaviour
     public GameObject Content;
 
 
-    public void CreateEmail(Patient patient)
+    public void CreateEmail(Patient patient,string Message)
     {
-        var gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);
-        var texts = gamer.transform.GetChild(0);
-        
-        //THIS WON'T WORK BRUH BRUH BRUH
-        var bruh = texts.GetComponentInParent<TextMesh>();
-        bruh.text = patient.Name;
-        gamer.transform.SetParent(Content.transform,false);
+        GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);
+        gamer.transform.SetParent(Content.transform, false);
+        //gamer.GetComponent<Button>().onClick.AddListener(OnClick);
+        Transform bruh = gamer.transform.GetChild(0);
+        TextMeshProUGUI cheese = bruh.gameObject.GetComponent<TextMeshProUGUI>();
+        cheese.text = patient.Name;
         
     }
     
@@ -32,7 +31,7 @@ public class EmailOnStart : MonoBehaviour
     {
         Bacterial Flu = new Bacterial("Flu");
         Patient patient = new Patient(Flu,"gamer");
-        CreateEmail(patient);
+        CreateEmail(patient,"I was shot!!!!!!");
 
 
 

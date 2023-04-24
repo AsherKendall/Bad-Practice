@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8914185649304871186}
   - component: {fileID: 2436609979283811172}
   - component: {fileID: 1091066933976134151}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 90361898915217239}
   - component: {fileID: 987728876017079120}
   - component: {fileID: 7769077670508161544}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: EmailPre
   m_TagString: Untagged
   m_Icon: {fileID: 0}

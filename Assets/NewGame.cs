@@ -5,9 +5,8 @@ using BadPractice.ClassSystem;
 public class NewGame : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public void InitializeClasses()
     {
-        
 
     }
 }
