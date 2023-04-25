@@ -27,7 +27,7 @@ public class EmailOnStart : MonoBehaviour
         //SceneManager.LoadScene();
     }
 
-    void OpenEmail(Patient patient)
+    public void OpenEmail(Patient patient)
     {
         //Sets from name
         From.GetComponent<TextMeshProUGUI>().text = patient.Name;
@@ -44,16 +44,18 @@ public class EmailOnStart : MonoBehaviour
     public void CreateEmail(Patient patient,string Message)
     {
         //Creates New object and sets the parent
-        GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);
+        GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);f
         gamer.transform.SetParent(Content.transform, false);
 
 
         Transform bruh = gamer.transform.GetChild(0);
         TextMeshProUGUI cheese = bruh.gameObject.GetComponent<TextMeshProUGUI>();
-        //This Maps the button on click to OpenEmail With the Given Patient
-        bruh.gameObject.GetComponent<Button>().onClick.AddListener(() => OpenEmail(patient));
         cheese.text = patient.Name;
-        
+        //This Maps the button on click to OpenEmail With the Given Patient
+        print(gamer.gameObject.name);
+        gamer.gameObject.GetComponent<Button>().onClick.AddListener(delegate() { this.OpenEmail(patient);  });
+
+
     }
 
 
