@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BadPractice.ClassSystem;
+using UnityEngine.SceneManagement;
 
 public class EmailOnStart : MonoBehaviour
 {
@@ -13,18 +14,48 @@ public class EmailOnStart : MonoBehaviour
     [SerializeField]
     public GameObject Content;
 
+    [SerializeField]
+    public GameObject Button;
+
+    [SerializeField]
+    public GameObject From;
+
+
+
+    void StartButton(Patient patient)
+    {
+        //SceneManager.LoadScene();
+    }
+
+    void OpenEmail(Patient patient)
+    {
+        //Sets from name
+        From.GetComponent<TextMeshProUGUI>().text = patient.Name;
+
+        //Activate Button
+        Button button = Button.GetComponent<Button>();
+        button.interactable = true;
+
+        //Remove other patients from button and adds currently selected
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => StartButton(patient));
+    }
 
     public void CreateEmail(Patient patient,string Message)
     {
+        //Creates New object and sets the parent
         GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);
         gamer.transform.SetParent(Content.transform, false);
-        //gamer.GetComponent<Button>().onClick.AddListener(OnClick);
+
+
         Transform bruh = gamer.transform.GetChild(0);
         TextMeshProUGUI cheese = bruh.gameObject.GetComponent<TextMeshProUGUI>();
+        //This Maps the button on click to OpenEmail With the Given Patient
+        bruh.gameObject.GetComponent<Button>().onClick.AddListener(() => OpenEmail(patient));
         cheese.text = patient.Name;
         
     }
-    
+
 
     // Start is called before the first frame update
     void Start()
