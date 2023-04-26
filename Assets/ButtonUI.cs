@@ -15,6 +15,6 @@ public class ButtonUI : MonoBehaviour
 
     public void StartButton()
     {
-        SceneManager.LoadScene("FirstScreen");
+        SceneManager.LoadScene("EmailScreen");
     }
 }

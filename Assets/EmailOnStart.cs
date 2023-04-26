@@ -5,9 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using BadPractice.ClassSystem;
 using UnityEngine.SceneManagement;
+using BadPractice.GlobalData;
 
 public class EmailOnStart : MonoBehaviour
 {
+
     [SerializeField]
     public GameObject EmailPre;
 
@@ -19,16 +21,17 @@ public class EmailOnStart : MonoBehaviour
 
     [SerializeField]
     public GameObject From;
-
-
-
-    void StartButton(Patient patient)
+ 
+    void StartButton(Patient patient,GameObject email)
     {
+        TheGuy = patient;
+        Destroy(email);
         //SceneManager.LoadScene();
     }
 
-    public void OpenEmail(Patient patient)
+    public void OpenEmail(Patient patient,GameObject email)
     {
+        print("hi");
         //Sets from name
         From.GetComponent<TextMeshProUGUI>().text = patient.Name;
 
@@ -38,13 +41,13 @@ public class EmailOnStart : MonoBehaviour
 
         //Remove other patients from button and adds currently selected
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => StartButton(patient));
+        button.onClick.AddListener(() => StartButton(patient,email));
     }
 
-    public void CreateEmail(Patient patient,string Message)
+    public void CreateEmail(Patient patient)
     {
         //Creates New object and sets the parent
-        GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);f
+        GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);
         gamer.transform.SetParent(Content.transform, false);
 
 
@@ -53,18 +56,16 @@ public class EmailOnStart : MonoBehaviour
         cheese.text = patient.Name;
         //This Maps the button on click to OpenEmail With the Given Patient
         print(gamer.gameObject.name);
-        gamer.gameObject.GetComponent<Button>().onClick.AddListener(delegate() { this.OpenEmail(patient);  });
+        gamer.GetComponent<Button>().onClick.AddListener( delegate () { OpenEmail(patient, gamer); });
 
 
     }
 
 
     // Start is called before the first frame update
-    void Start()
+        void Start()
     {
-        Bacterial Flu = new Bacterial("Flu");
-        Patient patient = new Patient(Flu,"gamer");
-        CreateEmail(patient,"I was shot!!!!!!");
+        
 
 
 

@@ -2,11 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BadPractice.ClassSystem;
-public class NewGame : MonoBehaviour
-{
-    // Start is called before the first frame update
-    public void InitializeClasses()
-    {
 
+
+namespace BadPractice.GlobalData
+{
+    
+    public class NewGame : MonoBehaviour
+    {
+        
+        
+        public void InitializeClasses()
+        {
+            //Gunshot
+            List<Patient> patients = new List<Patient>();
+            Bacterial Flu = new Bacterial("Flu");
+            Patient patient = new Patient(Flu, "gamer");
+            CreateEmail(patient);
+        }
     }
+
 }
+
