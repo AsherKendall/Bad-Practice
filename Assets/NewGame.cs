@@ -14,10 +14,7 @@ namespace BadPractice.GlobalData
         public void InitializeClasses()
         {
             //Gunshot
-            List<Patient> patients = new List<Patient>();
-            Bacterial Flu = new Bacterial("Flu");
-            Patient patient = new Patient(Flu, "gamer");
-            CreateEmail(patient);
+            
         }
     }
 

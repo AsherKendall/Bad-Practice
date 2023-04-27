@@ -24,7 +24,7 @@ public class EmailOnStart : MonoBehaviour
  
     void StartButton(Patient patient,GameObject email)
     {
-        TheGuy = patient;
+
         Destroy(email);
         //SceneManager.LoadScene();
     }
@@ -65,7 +65,11 @@ public class EmailOnStart : MonoBehaviour
     // Start is called before the first frame update
         void Start()
     {
-        
+        List<Patient> patients = new List<Patient>();
+        Disease Flu = new Disease("Flu");
+
+        Patient patient = new Patient(Flu, "gamer");
+        CreateEmail(patient);
 
 
 

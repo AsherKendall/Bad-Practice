@@ -8,11 +8,11 @@ namespace BadPractice.ClassSystem
 {
 	public abstract class Infliction
 	{
-		string _name;
 		List<Treatment> _treatments;
 		List<Symptom> _symptoms;
+		string _name;
 
-		public List<Symptom> Symptoms
+		public string Name
 		{
 			get
 			{
@@ -24,25 +24,6 @@ namespace BadPractice.ClassSystem
 			}
 		}
 
-		public List<Treatment> Treatments
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-		Infliction(string name)
-        {
-			_name = name;
-        }
 
-        public Infliction()
-        {
-			_name = null;
-        }
 	}
 }

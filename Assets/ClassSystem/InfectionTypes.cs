@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Pain : Symptom
+	public enum InfectionTypes
 	{
+		Bacterial,
+		Viral,
+		Fungal
 	}
 }

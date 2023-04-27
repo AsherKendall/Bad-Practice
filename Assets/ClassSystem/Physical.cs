@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Physical : Treatment
+	public class Physical : Treatment
 	{
+		string _location;
+
+		public string Location
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
 	}
 }

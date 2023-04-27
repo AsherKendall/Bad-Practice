@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public class Infectious : Disease
+	public class Laceration : Injury
 	{
-		InfectionTypes _infectionType;
-		bool _resistant;
+		bool _needsStitches;
 
-		public InfectionTypes InfectionType
+		public bool needsStitches
 		{
 			get
 			{

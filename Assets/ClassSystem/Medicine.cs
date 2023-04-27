@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Medicine : Treatment
+	public class Medicine : Treatment
 	{
+		List<MedicationType> _medicationTypes;
+
+		public string Type
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
 	}
 }

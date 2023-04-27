@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Genetic : Disease
+	public enum MedicationType
 	{
+		Antibiotic,
+		Analgesics,
+		AntiFungal,
+		Steroids,
+		Anticonvulsants,
+		Antiparasitics,
+		Antivirals,
+		Antiemetics
 	}
 }

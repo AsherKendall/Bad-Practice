@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace BadPractice.ClassSystem
 {
@@ -17,11 +16,11 @@ namespace BadPractice.ClassSystem
 		{
 			get
 			{
-				return _name;
+				throw new NotImplementedException();
 			}
 			set
 			{
-				_name = value;
+				throw new NotImplementedException();
 			}
 		}
 
@@ -66,21 +65,12 @@ namespace BadPractice.ClassSystem
 
 		public void ApplyTreatment(Treatment treatment)
 		{
-			//Removes all inflictions that are treated
-			if (treatment.GetType() == typeof(Antibiotic)) { _inflictions.RemoveAll(i => i.GetType() == typeof(Bacterial)); }
-
+			throw new NotImplementedException();
 		}
 
 		public Patient(Infliction infliction, string name)
 		{
-			_inflictions = new List<Infliction>();
-			_inflictions.Add(infliction);
-			_name = name;
-		}
-
-		public void LoadEmail()
-		{
-			
+			throw new NotImplementedException();
 		}
 	}
 }

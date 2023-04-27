@@ -8,6 +8,31 @@ namespace BadPractice.ClassSystem
 {
 	public abstract class Symptom
 	{
-		int newField;
+		string _location;
+		string _name;
+
+		public string location
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		public string _name
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
 	}
 }

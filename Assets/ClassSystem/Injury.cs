@@ -6,9 +6,33 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Injury : Infliction
+	public class Injury : Infliction
 	{
-		private string _name;
-		
+		string _location;
+		bool _isBleeding;
+
+		public string Location
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		public bool IsBleeding
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
 	}
 }

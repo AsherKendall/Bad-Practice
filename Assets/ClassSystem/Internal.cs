@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Internal : Injury
+	public class Internal : Injury
 	{
+		bool _blocked;
+
+		public bool Blocked
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
+		}
 	}
 }
