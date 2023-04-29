@@ -8,18 +8,24 @@ namespace BadPractice.ClassSystem
 {
 	public abstract class Treatment
 	{
-		int _effectiveness;
+		string _name;
 
-		public int Effectiveness
+		public string Name
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _name;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_name = value;
 			}
 		}
+
+		public Treatment(string name)
+        {
+			Name = name;
+        }
+
 	}
 }

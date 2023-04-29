@@ -8,18 +8,30 @@ namespace BadPractice.ClassSystem
 {
 	public class Medicine : Treatment
 	{
-		List<MedicationType> _medicationTypes;
+		List<MedicationTypes> _medicationType;
+		string _name;
 
-		public string Type
+		public List<MedicationTypes> MedicationType
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _medicationType;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_medicationType = value;
 			}
+		}
+
+		public Medicine(string name) : base(name)
+		{
+			Name = name;
+			MedicationType = new List<MedicationTypes>();
+		}
+
+		~Medicine()
+		{
+			MedicationType.Clear();
 		}
 	}
 }

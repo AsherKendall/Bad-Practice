@@ -9,17 +9,24 @@ namespace BadPractice.ClassSystem
 	public class Physical : Treatment
 	{
 		string _location;
+		string _name;
 
 		public string Location
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _location;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_location = value;
 			}
+		}
+
+		public Physical(string name, string location) : base(name)
+		{
+			Name = name;
+			Location = location;
 		}
 	}
 }

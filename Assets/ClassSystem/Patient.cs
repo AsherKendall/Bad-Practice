@@ -16,11 +16,11 @@ namespace BadPractice.ClassSystem
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _name;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_name = value;
 			}
 		}
 
@@ -28,11 +28,11 @@ namespace BadPractice.ClassSystem
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _temp;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_temp = value;
 			}
 		}
 
@@ -40,11 +40,11 @@ namespace BadPractice.ClassSystem
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _inflictions;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_inflictions = value;
 			}
 		}
 
@@ -60,17 +60,28 @@ namespace BadPractice.ClassSystem
 
 		~Patient()
 		{
-			throw new NotImplementedException();
+			_inflictions.Clear();
 		}
 
-		public void ApplyTreatment(Treatment treatment)
+		public List<string> ApplyTreatment(Treatment treatment)
 		{
-			throw new NotImplementedException();
+			List<string> RemovedInflictions = new List<string>();
+			foreach(Infliction i in Inflictions)
+            {
+				bool treated = i.Treat(treatment);
+				if(treated)
+                {
+					RemovedInflictions.Add(i.Name);
+					Inflictions.Remove(i);
+                }
+            }
+			return RemovedInflictions;
 		}
 
 		public Patient(Infliction infliction, string name)
 		{
-			throw new NotImplementedException();
+			Inflictions.Add(infliction);
+			Name = name;
 		}
 	}
 }

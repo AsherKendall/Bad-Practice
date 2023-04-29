@@ -9,17 +9,31 @@ namespace BadPractice.ClassSystem
 	public class Internal : Injury
 	{
 		bool _blocked;
+		string _name;
+		List<Symptom> _symptoms;
+		List<Treatment> _treatments;
 
 		public bool Blocked
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _blocked;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_blocked = value;
 			}
+		}
+
+
+		public Internal(string name, string location, bool IsBleeding, bool blocked) :base(name,location,IsBleeding)
+		{
+			Name = name;
+			Location = location;
+			this.IsBleeding = IsBleeding;
+			Blocked = blocked;
+			Symptoms = new List<Symptom>();
+			Treatements = new List<Treatment>();
 		}
 	}
 }

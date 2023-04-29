@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Symptom
+	public class Symptom
 	{
 		string _location;
 		string _name;
 
-		public string location
+		public string Location
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _location;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_location = value;
 			}
 		}
 
-		public string _name
+		public string Name
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _name;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_name = value;
 			}
 		}
 	}

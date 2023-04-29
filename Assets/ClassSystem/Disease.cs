@@ -8,26 +8,35 @@ namespace BadPractice.ClassSystem
 {
 	public class Disease : Infliction
 	{
-		List<Treatment> _treatments;
-		List<Symptom> _symptoms;
 		bool _isTreatable;
 		string _name;
-
-		 public Disease(string name)
-        {
-			_name = name;
-        }
+		List<Symptom> _symptoms;
+		List<Treatment> _treatments;
 
 		public bool IsTreatable
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _isTreatable;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_isTreatable = value;
 			}
+		}
+
+		public Disease(string name) : base(name)
+		{
+			this.Name = name;
+			_isTreatable = true;
+		}
+
+		public Disease(string name, bool isTreatable) : base(name)
+		{
+			Name = name;
+			IsTreatable = isTreatable;
+			Symptoms = new List<Symptom>();
+			Treatements = new List<Treatment>();
 		}
 	}
 }

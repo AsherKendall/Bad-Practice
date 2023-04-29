@@ -6,24 +6,67 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public abstract class Infliction
+	public class Infliction
 	{
-		List<Treatment> _treatments;
-		List<Symptom> _symptoms;
 		string _name;
+		private List<Symptom> _symptoms;
+		private List<Treatment> _treatments;
 
 		public string Name
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _name;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_name = value;
+			}
+		}
+
+		 public Infliction(string name)
+		{
+			Name = name;
+		}
+
+		public List<Symptom> Symptoms
+		{
+			get
+			{
+				return _symptoms;
+			}
+			set
+			{
+				_symptoms = value;
+			}
+		}
+
+		public List<Treatment> Treatements
+		{
+			get
+			{
+				return _treatments;
+			}
+			set
+			{
+				_treatments = value;
 			}
 		}
 
 
+		internal bool Treat(Treatment treatment)
+        {
+			if(Treatements.Contains(treatment))
+            {
+				return true;
+            }
+			return false;
+        }
+
+		~Infliction()
+		{
+			_symptoms.Clear();
+			_treatments.Clear();
+		}
 	}
 }

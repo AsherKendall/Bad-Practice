@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BadPractice.ClassSystem
 {
-	public enum MedicationType
+	public enum MedicationTypes
 	{
 		Antibiotic,
 		Analgesics,

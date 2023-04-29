@@ -8,31 +8,44 @@ namespace BadPractice.ClassSystem
 {
 	public class Injury : Infliction
 	{
-		string _location;
 		bool _isBleeding;
-
-		public string Location
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
+		string _location;
+		string _name;
+		List<Symptom> _symptoms;
+		List<Treatment> _treatments;
 
 		public bool IsBleeding
 		{
 			get
 			{
-				throw new NotImplementedException();
+				return _isBleeding;
 			}
 			set
 			{
-				throw new NotImplementedException();
+				_isBleeding = value;
 			}
+		}
+
+		public string Location
+		{
+			get
+			{
+				return _location;
+			}
+			set
+			{
+				_location = value;
+			}
+		}
+
+
+		public Injury(string name, string location, bool IsBleeding) : base(name)
+		{
+			Name = name;
+			Location = location;
+			this.IsBleeding = IsBleeding;
+			Symptoms = new List<Symptom>();
+			Treatements = new List<Treatment>();
 		}
 	}
 }
