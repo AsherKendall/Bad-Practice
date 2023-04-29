@@ -34,5 +34,9 @@ namespace BadPractice.ClassSystem
 				_name = value;
 			}
 		}
+		public Symptom(string name)
+        {
+			Name = name;
+        }
 	}
 }

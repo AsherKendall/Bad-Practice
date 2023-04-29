@@ -80,6 +80,7 @@ namespace BadPractice.ClassSystem
 
 		public Patient(Infliction infliction, string name)
 		{
+			Inflictions = new List<Infliction>();
 			Inflictions.Add(infliction);
 			Name = name;
 		}

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using BadPractice.ClassSystem;
 using UnityEngine.SceneManagement;
-using BadPractice.GlobalData;
+using PatientScreen;
 
 public class EmailOnStart : MonoBehaviour
 {
-
+    #region Item Vars
     [SerializeField]
     public GameObject EmailPre;
 
@@ -21,11 +21,40 @@ public class EmailOnStart : MonoBehaviour
 
     [SerializeField]
     public GameObject From;
- 
+
+    [SerializeField]
+    public GameObject EmailScreen;
+
+    [SerializeField]
+    public GameObject GameScreen;
+
+    [SerializeField]
+    public GameObject NameText;
+
+    [SerializeField]
+    public GameObject SymptomContent;
+
+    [SerializeField]
+    public GameObject TreatmentContent;
+
+    [SerializeField]
+    public GameObject SymptomPre;
+    #endregion
+
+    public void ExitButton()
+    {
+        EmailScreen.SetActive(true);
+        GameScreen.SetActive(false);
+    }
+
+
     void StartButton(Patient patient,GameObject email)
     {
-
+        
         Destroy(email);
+        EmailScreen.SetActive(false);
+        GameScreen.SetActive(true);
+        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,NameText);
         //SceneManager.LoadScene();
     }
 
@@ -55,7 +84,6 @@ public class EmailOnStart : MonoBehaviour
         TextMeshProUGUI cheese = bruh.gameObject.GetComponent<TextMeshProUGUI>();
         cheese.text = patient.Name;
         //This Maps the button on click to OpenEmail With the Given Patient
-        print(gamer.gameObject.name);
         gamer.GetComponent<Button>().onClick.AddListener( delegate () { OpenEmail(patient, gamer); });
 
 
@@ -65,8 +93,12 @@ public class EmailOnStart : MonoBehaviour
     // Start is called before the first frame update
         void Start()
     {
+
+        Symptom Fever = new Symptom("Fever");
+
         List<Patient> patients = new List<Patient>();
-        Disease Flu = new Disease("Flu");
+        Disease Flu = new Disease("Flu",true);
+        Flu.Symptoms.Add(Fever);
 
         Patient patient = new Patient(Flu, "gamer");
         CreateEmail(patient);
