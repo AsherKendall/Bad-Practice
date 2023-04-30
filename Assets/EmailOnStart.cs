@@ -39,6 +39,16 @@ public class EmailOnStart : MonoBehaviour
 
     [SerializeField]
     public GameObject SymptomPre;
+
+    [SerializeField]
+    public GameObject Exit;
+
+    [SerializeField]
+    public GameObject TreatmentPre;
+
+    [SerializeField]
+    public GameObject TreatButton;
+
     #endregion
 
     public void ExitButton()
@@ -48,17 +58,17 @@ public class EmailOnStart : MonoBehaviour
     }
 
 
-    void StartButton(Patient patient,GameObject email)
+    void StartButton(Patient patient,GameObject email, HashSet<Treatment> TreatementList)
     {
         
         Destroy(email);
         EmailScreen.SetActive(false);
         GameScreen.SetActive(true);
-        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,NameText);
+        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,TreatmentContent,NameText,Exit,EmailScreen,GameScreen,TreatmentPre, TreatementList,TreatButton);
         //SceneManager.LoadScene();
     }
 
-    public void OpenEmail(Patient patient,GameObject email)
+    public void OpenEmail(Patient patient,GameObject email, HashSet<Treatment> TreatementList)
     {
         print("hi");
         //Sets from name
@@ -70,10 +80,10 @@ public class EmailOnStart : MonoBehaviour
 
         //Remove other patients from button and adds currently selected
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => StartButton(patient,email));
+        button.onClick.AddListener(() => StartButton(patient,email, TreatementList));
     }
 
-    public void CreateEmail(Patient patient)
+    public void CreateEmail(Patient patient, HashSet<Treatment> TreatementList)
     {
         //Creates New object and sets the parent
         GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);
@@ -84,7 +94,7 @@ public class EmailOnStart : MonoBehaviour
         TextMeshProUGUI cheese = bruh.gameObject.GetComponent<TextMeshProUGUI>();
         cheese.text = patient.Name;
         //This Maps the button on click to OpenEmail With the Given Patient
-        gamer.GetComponent<Button>().onClick.AddListener( delegate () { OpenEmail(patient, gamer); });
+        gamer.GetComponent<Button>().onClick.AddListener( delegate () { OpenEmail(patient, gamer, TreatementList); });
 
 
     }
@@ -94,23 +104,43 @@ public class EmailOnStart : MonoBehaviour
         void Start()
     {
 
-        Symptom Fever = new Symptom("Fever");
+        //Sample Treatments
+        HashSet<Treatment> TreatementList = new HashSet<Treatment>();
 
-        List<Patient> patients = new List<Patient>();
-        Disease Flu = new Disease("Flu",true);
-        Flu.Symptoms.Add(Fever);
+        Medicine Oseltamivir = new Medicine("Oseltamivir");
+        Oseltamivir.MedicationType.Add(MedicationTypes.Antiviral);
+        TreatementList.Add(Oseltamivir);
 
-        Patient patient = new Patient(Flu, "gamer");
-        CreateEmail(patient);
-
-
-
+        Medicine Zanamivir = new Medicine("Zanamivir");
+        Zanamivir.MedicationType.Add(MedicationTypes.Antiviral);
+        TreatementList.Add(Zanamivir);
 
         //Sample Symptoms
+        Symptom Fever = new Symptom("Fever");
+        Symptom Cough = new Symptom("Cough");
+        Symptom SoreThroat = new Symptom("Sore Throat");
+        Symptom RunnyNose = new Symptom("Runny Nose");
+        Symptom Headache = new Symptom("Headache");
 
         //Sample Inflictions
 
+
+        //Flu
+        Disease Flu = new Disease("Flu",true);
+        Flu.Symptoms.Add(Fever);
+        Flu.Symptoms.Add(Cough);
+        Flu.Symptoms.Add(SoreThroat);
+        Flu.Symptoms.Add(RunnyNose);
+        Flu.Symptoms.Add(Headache);
+
+        Flu.Treatements.Add(Oseltamivir);
+        Flu.Treatements.Add(Zanamivir);
+
         //Sample Patients
+        Patient patient = new Patient(Flu, "gamer");
+        CreateEmail(patient,TreatementList);
+
+        
 
     }
 }

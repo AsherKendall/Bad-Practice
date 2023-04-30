@@ -9,12 +9,12 @@ namespace BadPractice.ClassSystem
 	public enum MedicationTypes
 	{
 		Antibiotic,
-		Analgesics,
+		Analgesic,
 		AntiFungal,
-		Steroids,
-		Anticonvulsants,
-		Antiparasitics,
-		Antivirals,
-		Antiemetics
+		Steroid,
+		Anticonvulsant,
+		Antiparasitic,
+		Antiviral,
+		Antiemetic
 	}
 }
