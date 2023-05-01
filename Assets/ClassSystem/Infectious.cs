@@ -18,10 +18,6 @@ namespace BadPractice.ClassSystem
 			{
 				return _infectionType;
 			}
-			set
-			{
-				_infectionType = value;
-			}
 		}
 
 		public bool Resistant
@@ -39,7 +35,7 @@ namespace BadPractice.ClassSystem
             }
 		}
 
-		new public bool Treat(Treatment treatment)
+		override internal bool Treat(Treatment treatment)
         {
 			if(treatment is Medicine)
             {
@@ -63,11 +59,12 @@ namespace BadPractice.ClassSystem
 			return false;
 		}
 
-		public Infectious(string name, bool isTreatable,InfectionTypes infectionType) :base(name,isTreatable)
+		public Infectious(string name, bool isTreatable,bool resistant,InfectionTypes infectionType) :base(name,isTreatable)
         {
 			Name = name;
 			IsTreatable = isTreatable;
-			InfectionType = infectionType;
+			_resistant = resistant;
+			_infectionType = infectionType;
 			Symptoms = new List<Symptom>();
 			Treatements = new List<Treatment>();
 		}

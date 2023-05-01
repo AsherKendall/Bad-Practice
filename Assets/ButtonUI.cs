@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class ButtonUI : MonoBehaviour
 {
+
+    [SerializeField]
+    Scene EmailScreen;
+
     public void QuitButton()
     {
         Application.Quit();

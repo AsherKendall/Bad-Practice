@@ -54,7 +54,7 @@ namespace BadPractice.ClassSystem
 		}
 
 
-		internal bool Treat(Treatment treatment)
+		virtual internal bool Treat(Treatment treatment)
         {
 			if(Treatements.Contains(treatment))
             {

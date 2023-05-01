@@ -61,17 +61,20 @@ public class EmailOnStart : MonoBehaviour
     }
 
 
-    void StartButton(Patient patient,GameObject email, HashSet<Treatment> TreatementList)
+    void StartButton(Patient patient,GameObject email, HashSet<Treatment> TreatementList,List<TreatButton> TreatmentButtons)
     {
         
         Destroy(email);
         EmailScreen.SetActive(false);
         GameScreen.SetActive(true);
-        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,TreatmentContent,NameText,Exit,EmailScreen,GameScreen,TreatmentPre, TreatementList,TreatButton,TreatedText);
+        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,TreatmentContent,NameText,Exit,EmailScreen,GameScreen,TreatmentPre, TreatementList,TreatButton,TreatedText,TreatmentButtons);
+        From.GetComponent<TextMeshProUGUI>().text = "";
+        Button button = Button.GetComponent<Button>();
+        button.interactable = false;
         //SceneManager.LoadScene();
     }
 
-    public void OpenEmail(Patient patient,GameObject email, HashSet<Treatment> TreatementList)
+    public void OpenEmail(Patient patient,GameObject email, HashSet<Treatment> TreatementList,List<TreatButton> TreatmentButtons)
     {
         //Sets from name
         From.GetComponent<TextMeshProUGUI>().text = patient.Name;
@@ -82,10 +85,10 @@ public class EmailOnStart : MonoBehaviour
 
         //Remove other patients from button and adds currently selected
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => StartButton(patient,email, TreatementList));
+        button.onClick.AddListener(() => StartButton(patient,email, TreatementList,TreatmentButtons));
     }
 
-    public void CreateEmail(Patient patient, HashSet<Treatment> TreatementList)
+    public void CreateEmail(Patient patient, HashSet<Treatment> TreatementList,List<TreatButton> TreatmentButtons)
     {
         //Creates New object and sets the parent
         GameObject gamer = Instantiate(EmailPre, new Vector2(0, 0), Quaternion.identity);
@@ -96,7 +99,7 @@ public class EmailOnStart : MonoBehaviour
         TextMeshProUGUI cheese = bruh.gameObject.GetComponent<TextMeshProUGUI>();
         cheese.text = patient.Name;
         //This Maps the button on click to OpenEmail With the Given Patient
-        gamer.GetComponent<Button>().onClick.AddListener( delegate () { OpenEmail(patient, gamer, TreatementList); });
+        gamer.GetComponent<Button>().onClick.AddListener( delegate () { OpenEmail(patient, gamer, TreatementList,TreatmentButtons); });
 
 
     }
@@ -117,18 +120,38 @@ public class EmailOnStart : MonoBehaviour
         Zanamivir.MedicationType.Add(MedicationTypes.Antiviral);
         TreatementList.Add(Zanamivir);
 
+        Physical ChemotherapyLungs = new Physical("Chemotherapy","Lungs");
+        TreatementList.Add(ChemotherapyLungs);
+
+        Medicine Penicillin = new Medicine("Penicillin");
+        Penicillin.MedicationType.Add(MedicationTypes.Antibiotic);
+        TreatementList.Add(Penicillin);
+
         //Sample Symptoms
         Symptom Fever = new Symptom("Fever");
         Symptom Cough = new Symptom("Cough");
         Symptom SoreThroat = new Symptom("Sore Throat");
         Symptom RunnyNose = new Symptom("Runny Nose");
         Symptom Headache = new Symptom("Headache");
+        Symptom ChestPain = new Symptom("Chest Pain");
+        Symptom CoughingBlood = new Symptom("Coughing Up Blood");
+        Symptom Tiredness = new Symptom("Tiredness");
+        Symptom WeightLoss = new Symptom("Weight Loss");
 
         //Sample Inflictions
 
+        //Lung Cancer
+        Disease LungCancer = new Disease("LungCancer", true);
+        LungCancer.Symptoms.Add(Cough);
+        LungCancer.Symptoms.Add(ChestPain);
+        LungCancer.Symptoms.Add(CoughingBlood);
+        LungCancer.Symptoms.Add(Tiredness);
+        LungCancer.Symptoms.Add(WeightLoss);
+
+        LungCancer.Treatements.Add(ChemotherapyLungs);
 
         //Flu
-        Disease Flu = new Disease("Flu",true);
+        Infectious Flu = new Infectious("Flu",true,false,InfectionTypes.Viral);
         Flu.Symptoms.Add(Fever);
         Flu.Symptoms.Add(Cough);
         Flu.Symptoms.Add(SoreThroat);
@@ -138,10 +161,26 @@ public class EmailOnStart : MonoBehaviour
         Flu.Treatements.Add(Oseltamivir);
         Flu.Treatements.Add(Zanamivir);
 
-        //Sample Patients
-        Patient patient = new Patient(Flu, "gamer");
-        CreateEmail(patient,TreatementList);
+        //Generic Bacterial Infection
+        Infectious GenericalBacterial = new Infectious("Generic Bacterial Infection", true, false, InfectionTypes.Bacterial);
 
+
+        //Resistant Bacterial Infection
+
+
+        //Create Treatment Buttons
+        List<TreatButton> TreatmentButtons = new List<TreatButton>();
+        TreatmentButtons = PatientSceneManager.GameScreenTreatmentLoad(TreatementList, TreatmentPre, TreatmentContent);
+
+        //Sample Patients
+        Patient patient = new Patient(Flu, "Joe");
+        CreateEmail(patient,TreatementList, TreatmentButtons);
+
+        Patient patient1 = new Patient(LungCancer, "Bob");
+        CreateEmail(patient1, TreatementList,TreatmentButtons);
+
+        Patient patient2 = new Patient(GenericalBacterial, "Hamburger");
+        CreateEmail(patient2, TreatementList, TreatmentButtons);
         
 
     }
