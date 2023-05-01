@@ -28,9 +28,9 @@ namespace PatientScreen
             GameScreen.SetActive(false);
         }
 
-        static void TreatButtonClick(Patient patient,Treatment treatment,InflictionSymptoms SymptomTracker,GameObject Exit)
+        static void TreatButtonClick(Patient patient,Treatment treatment,InflictionSymptoms SymptomTracker,GameObject Exit,GameObject TreatedText)
         {
-            List<string> TreatedInflictions = new List<string>();
+            List<Infliction> TreatedInflictions = new List<Infliction>();
             TreatedInflictions = patient.ApplyTreatment(treatment);
             if(TreatedInflictions.Count != 0)
             {
@@ -38,18 +38,25 @@ namespace PatientScreen
                 {
                     Destroy(g);
                 }
-                if(patient.Inflictions.Count == 0)
+                TextMeshProUGUI TextBox = TreatedText.GetComponent<TextMeshProUGUI>();
+                foreach (Infliction i in TreatedInflictions)
                 {
-                    Exit.GetComponent<Button>().interactable = true;
+                    TextBox.text += i.Name + ' ';
                 }
+                TextBox.text.Remove(TextBox.text.Length - 1, 1);
+            }
+
+            if (patient.Inflictions.Count == 0)
+            {
+                Exit.GetComponent<Button>().interactable = true;
             }
         }
 
-        static void SymptomSelect(Patient patient,Treatment treatment,InflictionSymptoms SymptomTracker,GameObject Treatbutton,GameObject Exit)
+        static void SymptomSelect(Patient patient,Treatment treatment,InflictionSymptoms SymptomTracker,GameObject Treatbutton,GameObject Exit,GameObject TreatedText)
         {
-            Treatbutton.GetComponent<Button>().onClick.AddListener(delegate () { TreatButtonClick(patient,treatment,SymptomTracker,Exit); });
+            Treatbutton.GetComponent<Button>().onClick.AddListener(delegate () { TreatButtonClick(patient,treatment,SymptomTracker,Exit,TreatedText); });
         }
-        static public void StartGame(Patient patient,GameObject SymptomPre,GameObject SymptomContent,GameObject TreatmentContent,GameObject NameText,GameObject Exit,GameObject EmailScreen,GameObject GameScreen,GameObject TreatmentPre,HashSet<Treatment> TreatmentList,GameObject TreatButton)
+        static public void StartGame(Patient patient,GameObject SymptomPre,GameObject SymptomContent,GameObject TreatmentContent,GameObject NameText,GameObject Exit,GameObject EmailScreen,GameObject GameScreen,GameObject TreatmentPre,HashSet<Treatment> TreatmentList,GameObject TreatButton,GameObject TreatedText)
         {
             var nametext = NameText.GetComponent<TextMeshProUGUI>();
             nametext.text = patient.Name;
@@ -80,7 +87,7 @@ namespace PatientScreen
                 bruh.text = t.Name;
 
                 //Change button to do something here
-                TreatmentItem.GetComponent<Button>().onClick.AddListener(delegate () { SymptomSelect(patient,t, SymptomTracker, TreatButton,Exit); });
+                TreatmentItem.GetComponent<Button>().onClick.AddListener(delegate () { SymptomSelect(patient,t, SymptomTracker, TreatButton,Exit,TreatedText); });
             }
 
 

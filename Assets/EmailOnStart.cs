@@ -49,6 +49,9 @@ public class EmailOnStart : MonoBehaviour
     [SerializeField]
     public GameObject TreatButton;
 
+    [SerializeField]
+    public GameObject TreatedText;
+
     #endregion
 
     public void ExitButton()
@@ -64,13 +67,12 @@ public class EmailOnStart : MonoBehaviour
         Destroy(email);
         EmailScreen.SetActive(false);
         GameScreen.SetActive(true);
-        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,TreatmentContent,NameText,Exit,EmailScreen,GameScreen,TreatmentPre, TreatementList,TreatButton);
+        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,TreatmentContent,NameText,Exit,EmailScreen,GameScreen,TreatmentPre, TreatementList,TreatButton,TreatedText);
         //SceneManager.LoadScene();
     }
 
     public void OpenEmail(Patient patient,GameObject email, HashSet<Treatment> TreatementList)
     {
-        print("hi");
         //Sets from name
         From.GetComponent<TextMeshProUGUI>().text = patient.Name;
 

@@ -63,17 +63,21 @@ namespace BadPractice.ClassSystem
 			_inflictions.Clear();
 		}
 
-		public List<string> ApplyTreatment(Treatment treatment)
+		public List<Infliction> ApplyTreatment(Treatment treatment)
 		{
-			List<string> RemovedInflictions = new List<string>();
+			List<Infliction> RemovedInflictions = new List<Infliction>();
 			foreach(Infliction i in Inflictions)
             {
 				bool treated = i.Treat(treatment);
 				if(treated)
                 {
-					RemovedInflictions.Add(i.Name);
-					Inflictions.Remove(i);
+					RemovedInflictions.Add(i);
                 }
+            }
+
+			foreach(Infliction i in RemovedInflictions)
+            {
+				Inflictions.Remove(i);
             }
 			return RemovedInflictions;
 		}
