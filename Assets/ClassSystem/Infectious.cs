@@ -35,7 +35,7 @@ namespace BadPractice.ClassSystem
             }
 		}
 
-		override internal bool Treat(Treatment treatment)
+		override protected internal bool Treat(Treatment treatment)
         {
 			if(treatment is Medicine)
             {

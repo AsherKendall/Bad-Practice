@@ -131,6 +131,9 @@ public class EmailOnStart : MonoBehaviour
         PenicillinG.MedicationType.Add(MedicationTypes.Antibiotic);
         TreatmentList.Add(PenicillinG);
 
+        Physical StitchRightForearm = new Physical("Stitch", "Right Forearm");
+        TreatmentList.Add(StitchRightForearm);
+
         //Sample Symptoms
         Symptom Fever = new Symptom("Fever");
         Symptom Cough = new Symptom("Cough");
@@ -143,6 +146,8 @@ public class EmailOnStart : MonoBehaviour
         Symptom WeightLoss = new Symptom("Weight Loss");
         Symptom Sweating = new Symptom("Sweating");
         Symptom FingernailsBlue = new Symptom("Fingernails turning blue");
+        Symptom BleedingRightForearm = new Symptom("Bleeding");
+        BleedingRightForearm.Location = "Right Forearm";
 
         //Sample Inflictions
 
@@ -175,7 +180,7 @@ public class EmailOnStart : MonoBehaviour
         GenericalBacterial.Symptoms.Add(Sweating);
 
         //Resistant Bacterial Infection
-        Infectious ResistantPneumoniaBacterial =new Infectious("Resistant Pneumonia Bacterial Infection", true, false, InfectionTypes.Bacterial);
+        Infectious ResistantPneumoniaBacterial =new Infectious("Resistant Pneumonia Bacterial Infection", true, true, InfectionTypes.Bacterial);
         ResistantPneumoniaBacterial.Symptoms.Add(Fever);
         ResistantPneumoniaBacterial.Symptoms.Add(Cough);
         ResistantPneumoniaBacterial.Symptoms.Add(Headache);
@@ -184,6 +189,12 @@ public class EmailOnStart : MonoBehaviour
         ResistantPneumoniaBacterial.Symptoms.Add(FingernailsBlue);
 
         ResistantPneumoniaBacterial.Treatements.Add(PenicillinG);
+
+
+        //Knife Cut On Rigth ForeArm
+        Laceration KnifeCutArm = new Laceration("Knife Cut on Arm", "Right Forearm", true);
+        KnifeCutArm.Symptoms.Add(BleedingRightForearm);
+
 
         //Create Treatment Buttons
         List<TreatButton> TreatmentButtons = new List<TreatButton>();
@@ -201,5 +212,9 @@ public class EmailOnStart : MonoBehaviour
 
         Patient patient3 = new Patient(ResistantPneumoniaBacterial, "John Brumles");
         CreateEmail(patient3, TreatmentList, TreatmentButtons);
+
+        Patient patient4 = new Patient(KnifeCutArm, "Joe Dirt");
+        CreateEmail(patient4, TreatmentList, TreatmentButtons);
+
     }
 }

@@ -38,10 +38,6 @@ namespace BadPractice.ClassSystem
 
 		public List<Infliction> Inflictions
 		{
-			get
-			{
-				return _inflictions;
-			}
 			set
 			{
 				_inflictions = value;
@@ -53,10 +49,28 @@ namespace BadPractice.ClassSystem
 			throw new NotImplementedException();
 		}
 
-		private void Die()
-		{
-			throw new NotImplementedException();
-		}
+		public HashSet<Symptom> GetSymptoms()
+        {
+			HashSet<Symptom> SymptomsList = new HashSet<Symptom>();
+			foreach(Infliction i in _inflictions)
+            {
+				foreach(Symptom s in i.Symptoms)
+                {
+					SymptomsList.Add(s);
+                }
+            }
+			return SymptomsList;
+        }
+
+		public bool IsHealthy()
+        {
+			if(_inflictions.Count == 0)
+            {
+				return true;
+            }
+
+			return false;
+        }
 
 		~Patient()
 		{
@@ -66,7 +80,7 @@ namespace BadPractice.ClassSystem
 		public List<Infliction> ApplyTreatment(Treatment treatment)
 		{
 			List<Infliction> RemovedInflictions = new List<Infliction>();
-			foreach(Infliction i in Inflictions)
+			foreach(Infliction i in _inflictions)
             {
 				bool treated = i.Treat(treatment);
 				if(treated)
@@ -77,7 +91,7 @@ namespace BadPractice.ClassSystem
 
 			foreach(Infliction i in RemovedInflictions)
             {
-				Inflictions.Remove(i);
+				_inflictions.Remove(i);
             }
 			return RemovedInflictions;
 		}
@@ -85,7 +99,7 @@ namespace BadPractice.ClassSystem
 		public Patient(Infliction infliction, string name)
 		{
 			Inflictions = new List<Infliction>();
-			Inflictions.Add(infliction);
+			_inflictions.Add(infliction);
 			Name = name;
 		}
 	}

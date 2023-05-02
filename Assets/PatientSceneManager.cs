@@ -67,7 +67,7 @@ namespace PatientScreen
                 TextBox.text.Remove(TextBox.text.Length - 1, 1);
             }
 
-            if (patient.Inflictions.Count == 0)
+            if (patient.IsHealthy())
             {
                 Exit.GetComponent<Button>().interactable = true;
             }
@@ -87,17 +87,23 @@ namespace PatientScreen
 
 
             //Add Symptoms to ScrollView and To SymptomTracker
-            foreach (Infliction i in patient.Inflictions)
+
+            foreach (Symptom s in patient.GetSymptoms())
             {
-                foreach (Symptom s in i.Symptoms)
+                GameObject SymptomPanel = Instantiate(SymptomPre, new Vector2(0, 0), Quaternion.identity);
+                SymptomPanel.transform.SetParent(SymptomContent.transform, false); //setParent
+                SymptomTracker.SymptomItems.Add(SymptomPanel);
+                Transform Child = SymptomPanel.transform.GetChild(0);
+                TextMeshProUGUI bruh = Child.gameObject.GetComponent<TextMeshProUGUI>();
+                if(s.Location != null)
                 {
-                    GameObject SymptomPanel = Instantiate(SymptomPre, new Vector2(0, 0), Quaternion.identity);
-                    SymptomPanel.transform.SetParent(SymptomContent.transform, false); //setParent
-                    SymptomTracker.SymptomItems.Add(SymptomPanel);
-                    Transform Child = SymptomPanel.transform.GetChild(0);
-                    TextMeshProUGUI bruh = Child.gameObject.GetComponent<TextMeshProUGUI>();
+                    bruh.text = s.Name + '(' + s.Location + ')';
+                }
+                else
+                {
                     bruh.text = s.Name;
                 }
+                    
             }
 
 

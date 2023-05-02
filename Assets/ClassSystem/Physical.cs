@@ -23,6 +23,18 @@ namespace BadPractice.ClassSystem
 			}
 		}
 
+		public static bool operator ==(Physical p1, Physical p2)
+		{
+			return p1.Name == p2.Name && p1.Location == p2.Location;
+
+		}
+
+		public static bool operator !=(Physical p1, Physical p2)
+		{
+			return p1.Name != p2.Name && p1.Location != p2.Location;
+
+		}
+
 		public Physical(string name, string location) : base(name)
 		{
 			Name = name;

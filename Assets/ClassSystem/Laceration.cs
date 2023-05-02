@@ -25,7 +25,7 @@ namespace BadPractice.ClassSystem
 			}
 		}
 
-        internal override bool Treat(Treatment treatment)
+        protected internal override bool Treat(Treatment treatment)
         {
 			if (treatment is Physical && NeedsStitches)
 			{

@@ -29,6 +29,18 @@ namespace BadPractice.ClassSystem
 			MedicationType = new List<MedicationTypes>();
 		}
 
+		public static bool operator ==(Medicine m1, Medicine m2)
+		{
+			return m1.Name == m2.Name && m1.MedicationType == m2.MedicationType;
+
+		}
+
+		public static bool operator !=(Medicine m1, Medicine m2)
+		{
+			return m1.Name != m2.Name && m1.MedicationType != m2.MedicationType;
+
+		}
+
 		~Medicine()
 		{
 			MedicationType.Clear();

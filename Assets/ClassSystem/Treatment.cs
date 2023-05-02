@@ -10,6 +10,9 @@ namespace BadPractice.ClassSystem
 	{
 		string _name;
 
+		
+
+		
 		public string Name
 		{
 			get
@@ -21,6 +24,8 @@ namespace BadPractice.ClassSystem
 				_name = value;
 			}
 		}
+
+		
 
 		public Treatment(string name)
         {
