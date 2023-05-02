@@ -25,11 +25,28 @@ namespace BadPractice.ClassSystem
 			}
 		}
 
-		public Laceration(string name, string location, bool IsBleeding, bool needsStitches) :base(name,location,IsBleeding)
+        internal override bool Treat(Treatment treatment)
+        {
+			if (treatment is Physical && NeedsStitches)
+			{
+				if (((Physical)treatment).Location == Location && treatment.Name == "Stitches") ;
+				{
+					return true;
+				}
+			}
+
+			if (Treatements.Contains(treatment))
+			{
+				return true;
+			}
+			return false;
+		}
+
+
+        public Laceration(string name, string location, bool needsStitches) :base(name,location)
 		{
 			Name = name;
 			Location = location;
-			this.IsBleeding = IsBleeding;
 			NeedsStitches = needsStitches;
 			Symptoms = new List<Symptom>();
 			Treatements = new List<Treatment>();

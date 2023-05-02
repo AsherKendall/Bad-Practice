@@ -58,7 +58,11 @@ namespace PatientScreen
                 TextMeshProUGUI TextBox = TreatedText.GetComponent<TextMeshProUGUI>();
                 foreach (Infliction i in TreatedInflictions)
                 {
-                    TextBox.text += i.Name + ' ';
+                    if(i is Injury)
+                    {
+                        TextBox.text += i.Name + "(" + ((Injury)i).Location + ")";
+                    }
+                    else{TextBox.text += i.Name;}
                 }
                 TextBox.text.Remove(TextBox.text.Length - 1, 1);
             }

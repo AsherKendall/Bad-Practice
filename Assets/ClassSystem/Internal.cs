@@ -26,11 +26,10 @@ namespace BadPractice.ClassSystem
 		}
 
 
-		public Internal(string name, string location, bool IsBleeding, bool blocked) :base(name,location,IsBleeding)
+		public Internal(string name, string location, bool blocked) :base(name,location)
 		{
 			Name = name;
 			Location = location;
-			this.IsBleeding = IsBleeding;
 			Blocked = blocked;
 			Symptoms = new List<Symptom>();
 			Treatements = new List<Treatment>();
