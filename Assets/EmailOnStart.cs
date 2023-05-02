@@ -215,6 +215,5 @@ public class EmailOnStart : MonoBehaviour
 
         Patient patient4 = new Patient(KnifeCutArm, "Joe Dirt");
         CreateEmail(patient4, TreatmentList, TreatmentButtons);
-
     }
 }
