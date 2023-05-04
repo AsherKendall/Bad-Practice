@@ -25,8 +25,23 @@ namespace BadPractice.ClassSystem
 			}
 		}
 
+        protected internal override bool Treat(Treatment treatment)
+        {
+			if(Blocked)
+            {
+				if(treatment is Physical)
+                {
+					if(((Physical)treatment).Name == "Removal" && ((Physical)treatment).Location == Location)
+                    {
+						Blocked = false;
+					}
+                }
+				return false;
+            }
+            return base.Treat(treatment);
+        }
 
-		public Internal(string name, string location, bool blocked) :base(name,location)
+        public Internal(string name, string location, bool blocked) :base(name,location)
 		{
 			Name = name;
 			Location = location;

@@ -134,6 +134,12 @@ public class EmailOnStart : MonoBehaviour
         Physical StitchRightForearm = new Physical("Stitch", "Right Forearm");
         TreatmentList.Add(StitchRightForearm);
 
+        Physical RemoveItemLeftThigh = new Physical("Removal", "Left Thigh");
+        TreatmentList.Add(RemoveItemLeftThigh);
+
+        Physical WrapLeftThigh = new Physical("Wrap", "Left Thigh");
+        TreatmentList.Add(WrapLeftThigh);
+
         //Sample Symptoms
         Symptom Fever = new Symptom("Fever");
         Symptom Cough = new Symptom("Cough");
@@ -148,6 +154,13 @@ public class EmailOnStart : MonoBehaviour
         Symptom FingernailsBlue = new Symptom("Fingernails turning blue");
         Symptom BleedingRightForearm = new Symptom("Bleeding");
         BleedingRightForearm.Location = "Right Forearm";
+
+        Symptom BleedingLeftThigh = new Symptom("Bleeding");
+        BleedingLeftThigh.Location = "Left Thigh";
+        Symptom BulletHoleLeftThigh = new Symptom("Bullethole");
+        BulletHoleLeftThigh.Location = "Left Thigh";
+        Symptom LargeCutRightForearm = new Symptom("Large Cut");
+        LargeCutRightForearm.Location = "Right Forearm";
 
         //Sample Inflictions
 
@@ -194,6 +207,14 @@ public class EmailOnStart : MonoBehaviour
         //Knife Cut On Rigth ForeArm
         Laceration KnifeCutArm = new Laceration("Knife Cut on Arm", "Right Forearm", true);
         KnifeCutArm.Symptoms.Add(BleedingRightForearm);
+        KnifeCutArm.Symptoms.Add(LargeCutRightForearm);
+
+
+        //Gunwound Bullet Still In
+        Internal StuckBullet = new Internal("Gunshot", "Left Thigh", true);
+        StuckBullet.Symptoms.Add(BleedingLeftThigh);
+        StuckBullet.Symptoms.Add(BulletHoleLeftThigh);
+        StuckBullet.Treatements.Add(WrapLeftThigh);
 
 
         //Create Treatment Buttons
@@ -215,5 +236,9 @@ public class EmailOnStart : MonoBehaviour
 
         Patient patient4 = new Patient(KnifeCutArm, "Joe Dirt");
         CreateEmail(patient4, TreatmentList, TreatmentButtons);
+
+        Patient patient5 = new Patient(StuckBullet, "David");
+        CreateEmail(patient5, TreatmentList, TreatmentButtons);
+
     }
 }
