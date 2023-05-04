@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BadPractice.ClassSystem;
-using UnityEngine.SceneManagement;
 using PatientScreen;
 
 public class EmailOnStart : MonoBehaviour
@@ -67,7 +66,7 @@ public class EmailOnStart : MonoBehaviour
         Destroy(email);
         EmailScreen.SetActive(false);
         GameScreen.SetActive(true);
-        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,TreatmentContent,NameText,Exit,EmailScreen,GameScreen,TreatmentPre, TreatmentList, TreatButton,TreatedText,TreatmentButtons);
+        PatientSceneManager.StartGame(patient,SymptomPre,SymptomContent,NameText,Exit,EmailScreen,GameScreen, TreatButton,TreatedText,TreatmentButtons);
         From.GetComponent<TextMeshProUGUI>().text = "";
         Button button = Button.GetComponent<Button>();
         button.interactable = false;

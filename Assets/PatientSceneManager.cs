@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BadPractice.ClassSystem;
-using UnityEngine.SceneManagement;
 
 
 namespace PatientScreen
@@ -45,13 +44,13 @@ namespace PatientScreen
             GameScreen.SetActive(false);
         }
 
-        static void TreatButtonClick(Patient patient, Treatment treatment, InflictionSymptoms SymptomTracker, GameObject Exit, GameObject TreatedText)
+        static void TreatButtonClick(Patient patient, Treatment treatment, List<GameObject> SymptomTracker, GameObject Exit, GameObject TreatedText)
         {
             List<Infliction> TreatedInflictions = new List<Infliction>();
             TreatedInflictions = patient.ApplyTreatment(treatment);
             if (TreatedInflictions.Count != 0)
             {
-                foreach (GameObject g in SymptomTracker.SymptomItems)
+                foreach (GameObject g in SymptomTracker)
                 {
                     Destroy(g);
                 }
@@ -73,17 +72,17 @@ namespace PatientScreen
             }
         }
 
-        static void SymptomSelect(Patient patient, Treatment treatment, InflictionSymptoms SymptomTracker, Button button, GameObject Exit, GameObject TreatedText)
+        static void SymptomSelect(Patient patient, Treatment treatment, List<GameObject> SymptomTracker, Button button, GameObject Exit, GameObject TreatedText)
         {
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(delegate () { TreatButtonClick(patient, treatment, SymptomTracker, Exit, TreatedText); });
         }
-        static public void StartGame(Patient patient, GameObject SymptomPre, GameObject SymptomContent, GameObject TreatmentContent, GameObject NameText, GameObject Exit, GameObject EmailScreen, GameObject GameScreen, GameObject TreatmentPre, HashSet<Treatment> TreatmentList, GameObject Treatment, GameObject TreatedText,List<TreatButton>TreatmentButtons)
+        static public void StartGame(Patient patient, GameObject SymptomPre, GameObject SymptomContent, GameObject NameText, GameObject Exit, GameObject EmailScreen, GameObject GameScreen, GameObject Treatment, GameObject TreatedText,List<TreatButton>TreatmentButtons)
         {
             var nametext = NameText.GetComponent<TextMeshProUGUI>();
             nametext.text = patient.Name;
 
-            InflictionSymptoms SymptomTracker = new InflictionSymptoms();
+            List<GameObject> SymptomTracker = new List<GameObject>();
 
 
             //Add Symptoms to ScrollView and To SymptomTracker
@@ -92,7 +91,7 @@ namespace PatientScreen
             {
                 GameObject SymptomPanel = Instantiate(SymptomPre, new Vector2(0, 0), Quaternion.identity);
                 SymptomPanel.transform.SetParent(SymptomContent.transform, false); //setParent
-                SymptomTracker.SymptomItems.Add(SymptomPanel);
+                SymptomTracker.Add(SymptomPanel);
                 Transform Child = SymptomPanel.transform.GetChild(0);
                 TextMeshProUGUI bruh = Child.gameObject.GetComponent<TextMeshProUGUI>();
                 if(s.Location != null)
