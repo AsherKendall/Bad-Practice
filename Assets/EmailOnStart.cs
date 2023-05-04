@@ -130,7 +130,7 @@ public class EmailOnStart : MonoBehaviour
         PenicillinG.MedicationType.Add(MedicationTypes.Antibiotic);
         TreatmentList.Add(PenicillinG);
 
-        Physical StitchRightForearm = new Physical("Stitch", "Right Forearm");
+        Physical StitchRightForearm = new Physical("Stitches", "Right Forearm");
         TreatmentList.Add(StitchRightForearm);
 
         Physical RemoveItemLeftThigh = new Physical("Removal", "Left Thigh");

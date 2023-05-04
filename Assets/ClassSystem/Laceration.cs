@@ -25,11 +25,11 @@ namespace BadPractice.ClassSystem
 			}
 		}
 
-        protected internal override bool Treat(Treatment treatment)
+		override protected internal bool Treat(Treatment treatment)
         {
 			if (treatment is Physical && NeedsStitches)
 			{
-				if (((Physical)treatment).Location == Location && treatment.Name == "Stitches") ;
+				if (((Physical)treatment).Location == Location && ((Physical)treatment).Name == "Stitches")
 				{
 					return true;
 				}
